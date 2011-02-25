@@ -1,0 +1,23 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-type" content="text/html; charset=utf-8">
+  <title>Testing document.write</title>
+</head>
+<body>
+  <h1>document.write external script execution order</h1>
+  <div>Inspired by <a href="http://kangax.github.com/jstests/document_write_script_execution_order_test/">document.write script execution order</a></div>
+  <div>The following numbers should be 1 to 8, written in ascending order and colored green:</div>
+  <div id="output" style="color:red"></div>
+  <script type="text/javascript" src="level1.js"></script>
+  <script type="text/javascript">
+    setInterval(function() {
+      var output = document.getElementById('output');
+      if (output.innerHTML == "12345678") {
+        output.style.color = "green";
+      }
+    }, 100);
+  </script>
+</body>
+</html>
+
