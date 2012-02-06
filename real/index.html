@@ -1,0 +1,37 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-type" content="text/html; charset=utf-8">
+  <title>Testing document.write</title>
+</head>
+<body>
+  
+  <script type="text/javascript">
+    window.byburt_onPopWrite = function(adtag) {
+      console.log(adtag);
+      document.write(adtag);
+    }
+  
+  </script>
+  
+  <script type="text/javascript">
+    // 2: Execute the ad code
+    document.write('<script type="text/javascript" src="http://oas-se.bonnierdigitalservices.com/RealMedia/ads/adstream_jx.ads/di.se/Ettan/1859276217@k4a2"></scr' + 'ipt>');
+
+    // 3: Pop write
+    document.write('<script type="text/javascript" src="popWrite.js"></scr' + 'ipt>');
+
+    // 1: Push write
+    (function() {
+      window.byburt_documentWrite = document.write;
+      window.byburt_documentWritten = [];
+      document.write = function() {
+        Array.prototype.push.apply(window.byburt_documentWritten, arguments);
+      }
+    }());
+  </script>
+
+
+</body>
+</html>
+
